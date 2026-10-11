@@ -1,5 +1,5 @@
 # Orchestrator image. Build context = repository root (workspaces).
-FROM node:22-alpine
+FROM node:25-alpine
 WORKDIR /app
 ENV NODE_ENV=production
 # kubernetes runtime (ADR-0008): kind drives the sandbox daemon through the docker CLI (DOCKER_HOST=unix:///var/run/docker.sock)
