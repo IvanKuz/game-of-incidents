@@ -1,5 +1,5 @@
 # Web image. Build context = repository root (workspaces). Pattern ported from wom-games/Dockerfile.
-FROM node:22-alpine AS deps
+FROM node:25-alpine AS deps
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY package.json package-lock.json ./
@@ -9,7 +9,7 @@ COPY packages/scenario/package.json packages/scenario/
 COPY apps/web/package.json apps/web/
 RUN npm ci --no-audit --no-fund --include=dev
 
-FROM node:22-alpine AS builder
+FROM node:25-alpine AS builder
 # robots.txt, sitemap.xml, metadataBase and the link-preview image are rendered while the image is built: the domain has to be known here
 ARG WOM_DOMAIN=
 ENV WOM_DOMAIN=$WOM_DOMAIN
@@ -23,7 +23,7 @@ COPY packages/scenario packages/scenario
 COPY apps/web apps/web
 RUN npm -w @wom/db run generate && npm -w @wom/web run build
 
-FROM node:22-alpine AS runner
+FROM node:25-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
