@@ -1,6 +1,6 @@
 # wom-tools: the on-call engineer's terminal for kubernetes scenarios (ADR-0008) and the runner for their scripts.
 # kubectl + the usual shell tools; user `oncall` with sudo (sudo affects this container only, never the cluster nodes).
-FROM alpine:3.22
+FROM alpine:3.24
 # kubectl stays within one minor of the cluster (kind node v1.37); the sha256 is read from the release server and checked
 ARG KUBECTL_VERSION=v1.37.1
 RUN apk add --no-cache bash bash-completion curl jq less vim nano sudo coreutils procps iproute2 bind-tools ca-certificates \
